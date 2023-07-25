@@ -222,13 +222,3 @@ const paginarEntidad = (entity: Object[], page: number) => {
 
 paginarEntidad(users, 1);
 
-
-
-
-
-
-
-
-
-
-
