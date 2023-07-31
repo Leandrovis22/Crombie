@@ -1,11 +1,10 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
+    background: url(../basic-html-css-js/photo-1483232539664-d89822fb5d3e.jpg);
+    color: aliceblue;
   }
   
-  h1 {
-    color: #333;
-  }
   
   input {
     padding: 5px;
@@ -23,4 +22,5 @@ body {
   #result {
     margin-top: 20px;
   }
+
   
