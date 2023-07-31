@@ -4,7 +4,12 @@ body {
     background: url(../basic-html-css-js/photo-1483232539664-d89822fb5d3e.jpg);
     color: aliceblue;
   }
-  
+
+  p, h1 {
+    background-color: rgb(105, 79, 79);
+    border-radius: 10px; /* Adjust the value to control the roundness */
+    opacity: 0.8;
+  }
   
   input {
     padding: 5px;
