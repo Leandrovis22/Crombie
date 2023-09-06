@@ -1,0 +1,63 @@
+CREATE SCHEMA red_social;
+
+CREATE TABLE red_social.usuarios (
+  id INT NOT NULL AUTO_INCREMENT,
+  email VARCHAR(200) NOT NULL,
+  contraseña VARCHAR(45) NOT NULL,
+  descripcion TEXT NULL,
+  foto VARCHAR(200) NOT NULL DEFAULT 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',
+  nombre VARCHAR(45) NOT NULL,
+  blocked BOOLEAN,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE red_social.publicaciones (
+  id INT NOT NULL AUTO_INCREMENT,
+  id_usuario INT,
+  contenido TEXT,
+  fecha TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  FOREIGN KEY (id_usuario) REFERENCES red_social.usuarios(id)
+);
+
+CREATE TABLE red_social.me_gusta (
+  id INT NOT NULL AUTO_INCREMENT,
+  id_publicaciones INT,
+  id_usuarios INT,
+  fecha TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  FOREIGN KEY (id_publicaciones) REFERENCES red_social.publicaciones(id),
+  FOREIGN KEY (id_usuarios) REFERENCES red_social.usuarios(id)
+);
+
+CREATE TABLE red_social.seguidores (
+  id INT NOT NULL AUTO_INCREMENT,
+  id_usuario INT,
+  id_usuario_seguido INT,
+  fecha TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  FOREIGN KEY (id_usuario) REFERENCES red_social.usuarios(id),
+  FOREIGN KEY (id_usuario_seguido) REFERENCES red_social.usuarios(id)
+);
+
+CREATE TABLE red_social.imagenes (
+  id INT NOT NULL AUTO_INCREMENT,
+  id_publicacion INT,
+  url VARCHAR(200),
+  fecha TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  FOREIGN KEY (id_publicacion) REFERENCES red_social.publicaciones(id)
+);
+
+CREATE TABLE red_social.mensajes (
+  id INT NOT NULL AUTO_INCREMENT,
+  id_usuario INT,
+  id_usuario_receptor INT,
+  contenido TEXT,
+  fecha TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  url VARCHAR(200),
+  PRIMARY KEY (id),
+  FOREIGN KEY (id_usuario) REFERENCES red_social.usuarios(id),
+  FOREIGN KEY (id_usuario_receptor) REFERENCES red_social.usuarios(id)
+);
+
